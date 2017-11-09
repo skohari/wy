@@ -26,12 +26,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser mUser = mAuth.getCurrentUser();
         if (mUser == null) {
             sendToStart();
-
         } else {
 
-
         }
-
     }
 
     private void sendToStart() {
@@ -49,10 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentUser != null) {
 
-
         }
-
     }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -73,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             sendToStart();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+    
 }
