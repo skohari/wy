@@ -48,8 +48,8 @@ public class Register extends AppCompatActivity {
 
         //Progress Dialoge
         mprogressDialog = new ProgressDialog(this);
-        mprogressDialog.setTitle("Registring...");
-        mprogressDialog.setMessage("Please Wait.....");
+        mprogressDialog.setTitle("Registering...");
+        mprogressDialog.setMessage("Verifying Details...");
         mprogressDialog.setCanceledOnTouchOutside(false);
 
         //Firebase References
@@ -66,13 +66,13 @@ public class Register extends AppCompatActivity {
                 if (email.length() == 0) {
                     memailEditText.requestFocus();
                     memailEditText.setError("Field Cannot Be Empty");
-                }else if (Password.length() == 0) {
+                } else if (Password.length() == 0) {
                     mpasswordEditText.requestFocus();
                     mpasswordEditText.setError("Field Cannot Be Empty");
                 } else if(name.length()==0){
                     mnameEditText.requestFocus();
                     mnameEditText.setError("Field Cannot Be Empty");
-                }else {
+                } else {
                     mprogressDialog.show();
                     mAuth.createUserWithEmailAndPassword(email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -102,13 +102,13 @@ public class Register extends AppCompatActivity {
                                     memailEditText.setError("Invalid Email");
                                     memailEditText.requestFocus();
                                 } catch(FirebaseAuthUserCollisionException e) {
-                                    memailEditText.setError("User Already Exist");
+                                    memailEditText.setError("User Already Exists");
                                     memailEditText.requestFocus();
                                 } catch(FirebaseNetworkException e) {
-                                    Toast.makeText(Register.this,"User Already Exist",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Register.this,"User Already Exists",Toast.LENGTH_LONG).show();
                                 }
                                 catch(Exception e) {
-                                    Toast.makeText(Register.this,"You Got Some Network Error.",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Register.this,"Network Error",Toast.LENGTH_LONG).show();
                                 }
 
                             }
