@@ -32,11 +32,10 @@ public class ForgotActivity extends AppCompatActivity {
         //Progress Dialoge
         mprogressDialog = new ProgressDialog(this);
         mprogressDialog.setTitle("Requesting...");
-        mprogressDialog.setMessage("Sending Email.....");
+        mprogressDialog.setMessage("Sending email...");
 
         //Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
-
 
         //Toolabr BackArrow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -51,7 +50,7 @@ public class ForgotActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         mprogressDialog.dismiss();
-                        Toast.makeText(ForgotActivity.this, "Link Has Sent To Your Email For Reset Password", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ForgotActivity.this, "Password reset link emailed", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(ForgotActivity.this, LoginActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
