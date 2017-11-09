@@ -36,19 +36,22 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        
         //EditTexts Refernces
         memailEditText=(EditText)findViewById(R.id.emailEditText);
         mpasswordEditText=(EditText)findViewById(R.id.passwordEditText);
+        
         //Login Button References
         mloginButton=(Button)findViewById(R.id.loginButton);
+        
         //TextView Refernces
         mregisterButton=(TextView)findViewById(R.id.registerButton);
         mforgotButton=(TextView)findViewById(R.id.forgotButton);
 
         //Progress Dialoge
         mprogressDialog = new ProgressDialog(this);
-        mprogressDialog.setTitle("Login...");
-        mprogressDialog.setMessage("Please Wait.....");
+        mprogressDialog.setTitle("Logging in...");
+        mprogressDialog.setMessage("Verifying details...");
         mprogressDialog.setCanceledOnTouchOutside(false);
 
         //Firebase References
@@ -64,10 +67,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(Email)){
                     memailEditText.setError("Email Cannot Be Empty");
                     memailEditText.requestFocus();
-                }else if (TextUtils.isEmpty(Password)){
+                } else if (TextUtils.isEmpty(Password)){
                     mpasswordEditText.setError("Password Cannot Be Empty");
                     mpasswordEditText.requestFocus();
-                }else {
+                } else {
                     mprogressDialog.show();
                     mAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -94,10 +97,10 @@ public class LoginActivity extends AppCompatActivity {
                                 } catch (FirebaseAuthInvalidCredentialsException e) {
                                     memailEditText.setError("Invalid Username or Password");
                                     memailEditText.requestFocus();
-                                    mpasswordEditText.setError("Inavalid Username or Pasword");
+                                    mpasswordEditText.setError("Invalid Username or Password");
                                     mpasswordEditText.requestFocus();
                                 } catch (FirebaseAuthUserCollisionException e) {
-                                    memailEditText.setError("User Already Exist");
+                                    memailEditText.setError("User Already Exists");
                                     memailEditText.requestFocus();
                                 } catch (Exception e) {
                                     Toast.makeText(LoginActivity.this, "You Got Some Network Error.", Toast.LENGTH_LONG).show();
@@ -108,8 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-
-            }
+            }            
         });
 
         //Registration Button
